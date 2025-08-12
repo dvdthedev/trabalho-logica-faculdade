@@ -1,11 +1,11 @@
-print('Bem vindo a loja do Deivid Rocha')
-valor = 0
-parcelas = 0
+print('Bem vindo a loja do Deivid Alves da Rocha')
+valorDoPedido = 0
+quantidadeParcelas = 0
 
 while True:
     try:
-        valor = float(input('Insira o valor da parcela: R$'))
-        if 1 <= valor:
+        valorDoPedido = float(input('Insira o valor da parcela: R$'))
+        if 1 <= valorDoPedido:
             break
         else:
             continue
@@ -14,34 +14,33 @@ while True:
 
 while True:
     try:
-        parcelas = int(input('Insira a quantidade de parcelas: '))
-        if 1 <= valor:
+        quantidadeParcelas = int(input('Insira a quantidade de parcelas: '))
+        if 1 <= valorDoPedido:
             break
         else:
             continue
     except:
         print('Valor de parcela inválido')
-print(valor,parcelas)
 
-def print_parcela (valor_total):
+def print_parcela (valorTotal):
+    valorDaParcela = valorTotal / quantidadeParcelas
+    print(f'O valor das parcelas é de R$ {valorDaParcela:.2f}')
+    print(f'O valor total parcelado é de: R$ {valorTotal:.2f}')
 
-    print(f'O valor das parcelas é de R$ {valor_total / parcelas:.2f}')
-    print(f'O valor total parcelado é de: R$ {valor_total:.2f}')
 
+if quantidadeParcelas < 4:
+    print_parcela(valorDoPedido)
 
-if parcelas < 4:
-    print_parcela( valor)
-
-elif parcelas >= 4 and parcelas < 6:
-    valor_total = valor * (1 + (4 / 100))
-    print_parcela(valor_total)
-elif parcelas >= 6 and parcelas < 9:
-    valor_total = valor * (1 + (8 / 100))
-    print_parcela((valor_total))
-elif parcelas >= 9 and parcelas < 13:
-    valor_total = valor * (1 + (16 / 100))
-    print_parcela((valor_total))
-elif parcelas >= 13:
-    valor_total = valor * (1 + (32 / 100))
-    print_parcela((valor_total))
+elif quantidadeParcelas >= 4 and quantidadeParcelas < 6:
+    valorTotalParcelado = valorDoPedido * (1 + (4 / 100))
+    print_parcela(valorTotalParcelado)
+elif quantidadeParcelas >= 6 and quantidadeParcelas < 9:
+    valorTotalParcelado = valorDoPedido * (1 + (8 / 100))
+    print_parcela((valorTotalParcelado))
+elif quantidadeParcelas >= 9 and quantidadeParcelas < 13:
+    valorTotalParcelado = valorDoPedido * (1 + (16 / 100))
+    print_parcela((valorTotalParcelado))
+elif quantidadeParcelas >= 13:
+    valorTotalParcelado = valorDoPedido * (1 + (32 / 100))
+    print_parcela((valorTotalParcelado))
 
