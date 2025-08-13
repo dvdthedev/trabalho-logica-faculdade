@@ -1,5 +1,7 @@
+#Importa Classe Marmita para o main
 from Marmita import Marmita
 
+#Instâncias da Classe Marmita
 marmitaDeFrango = Marmita(
     sabor='Filé de Frango(FF)',
     precoPorTamanho={'P' : 15.00, 'M' : 17.00, 'G' : 21.00}
@@ -9,11 +11,7 @@ marmitaDeBifeAcebolado = Marmita(
     sabor='Bife Acebolado(BA)',
     precoPorTamanho={'P' : 16.00, 'M' : 18.00, 'G' : 22.00}
 )
-
-chaveP = 'P'
-chaveM = 'M'
-chaveG = 'G'
-
+#Parte do código responsável por gerar a parte gráfica do Menu
 def imprimeLinhaPorTamanhoDeMarmita(tamanho,marmita1, marmita2):
     """
 
@@ -42,46 +40,66 @@ imprimeLinhaPorTamanhoDeMarmita('P',marmitaDeBifeAcebolado, marmitaDeFrango)
 imprimeLinhaPorTamanhoDeMarmita('M',marmitaDeBifeAcebolado, marmitaDeFrango)
 imprimeLinhaPorTamanhoDeMarmita('G',marmitaDeBifeAcebolado, marmitaDeFrango)
 
+#Variáveis para o funcionamento dos laços
 print(f'{65 * '-'}')
 sabor = ''
 acumulador = 0
-nomeSabor = ''
-tamanhoDaMarmita = ''
+tamanho = ''
 opcao = 'S'
+nomeSabor = ''
 
 while opcao == 'S':
     if opcao.upper() == 'N':
         break
-
+    #Condicionais responsáveis por capturar Sabor e Tamanho.
     while True:
         try:
             sabor = input('Entre com o sabor desejado: (BA/FF)').upper()
             if 'BA' == sabor:
-                nomeSabor = 'Bife Acebolado'
                 break
             elif 'FF' == sabor:
-                nomeSabor = 'Filé de Frango'
                 break
             else:
-                continue
+                raise ValueError
         except:
             print('Sabor inválido, tente novamente.')
+            print()
 
     while True:
         try:
-            tamanhoDaMarmita = input('Entre com a tamanho da marta: (P/M/G): ').upper()
-            if tamanhoDaMarmita == 'P':
+            tamanho = input('Entre com a tamanho da marta: (P/M/G): ').upper()
+            if tamanho == 'P':
                 break
-            if tamanhoDaMarmita == 'M':
+            elif tamanho == 'M':
                 break
-            if tamanhoDaMarmita == 'G':
+            elif tamanho == 'G':
                 break
+            else :
+                raise ValueError
         except:
             print('Tamanho inválido, tente novamente.')
 
-    if nomeSabor == 'Bife Acebolado':
-        if tamanhoDaMarmita == 'P':
-            acumulador += marmitaDeBifeAcebolado.getValor(tamanhoDaMarmita)
+    #Condicionais responsáveis por acumular valor e gerar visual
+    if sabor == 'BA':
+        nomeSabor = 'Bife Acebolado'
+        print(f'Você pediu um {nomeSabor} no tamanho {tamanho}: R$ {marmitaDeBifeAcebolado.getValor(tamanho):.2f}')
+
+        if tamanho == 'P':
+            acumulador += marmitaDeBifeAcebolado.getValor(tamanho)
+        elif tamanho == 'M':
+            acumulador += marmitaDeBifeAcebolado.getValor(tamanho)
+        elif tamanho == 'G':
+            acumulador += marmitaDeBifeAcebolado.getValor(tamanho)
+    elif sabor  == 'FF':
+        nomeSabor = 'Filé de Frango'
+        print(f'Você pediu um {nomeSabor} no tamanho {tamanho}: R$ {marmitaDeFrango.getValor(tamanho):.2f}')
+
+        if tamanho == 'P':
+            acumulador += marmitaDeFrango.getValor(tamanho)
+        elif tamanho == 'M':
+            acumulador += marmitaDeFrango.getValor(tamanho)
+        elif tamanho == 'G':
+            acumulador += marmitaDeFrango.getValor(tamanho)
 
     while True:
         try:
@@ -92,4 +110,5 @@ while opcao == 'S':
                 break
         except:
             print('Opção inválida!')
-print(nomeSabor, tamanhoDaMarmita, acumulador)
+#Exibe a mensagem de fim do programa, o valor a ser pago.
+print(f'O valor total a ser pago: R$ {acumulador:.2f}')
