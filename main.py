@@ -12,7 +12,7 @@ while True:
             continue
     except:
         print('Valor inválido, digite só números e ponto')
-        
+
 #Laço de repetição para obrigar o usuário digitar um valor int válido de parcelas
 while True:
     try:
@@ -28,9 +28,9 @@ def print_parcela (valorTotal):
     """
     Args:
         valorTotal : Utilizado para retorno do valor total e para o cálculo de parcelas
-        valorDaParcela : Utilizado para dividir o valorTotal por quantidadeDeParcelas afim de obter o valor de cada parcela.
+
     Returns:
-        Nenhum: print com valores visuais para o usuário
+        None: print com valores visuais para o usuário
 
     """
 
