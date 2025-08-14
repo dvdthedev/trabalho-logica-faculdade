@@ -5,14 +5,29 @@ def cadastrar_funcionario(id_global):
     while True:
         try:
             print(f'{'-' * 18} MENU CADASTRAR FUNCIONÁRIO {'-' * 19}')
-            funcionario = input('Por favor entre com o nome do funcionario: ')
+            nome = input('Por favor entre com o nome do funcionario: ')
             setor = input('Por favor entre com o setor do funcionario: ')
             salario = float(input('Por favor entre com o salario do funcionario: '))
-            funcionario = {'id' : id_global, 'funcionario': funcionario, 'setor': setor, 'salario': salario}
+            funcionario = {'id' : id_global, 'nome': nome, 'setor': setor, 'salario': salario}
             lista_funcionarios.append(funcionario)
             break
         except ValueError:
             print('Valores inválidos, tente novamente')
+
+def imprime_funcionario(i):
+    print(f''
+          f'id: {lista_funcionarios[i]['id']}\n'
+          f'nome: {lista_funcionarios[i]['nome']}\n'
+          f'setor: {lista_funcionarios[i]['setor']}\n'
+          f'salário: {lista_funcionarios[i]['salario']}\n')
+
+def remover_funcionario():
+    print(f'{'-' * 19} MENU REMOVER FUNCIONÁRIO {'-' * 20}')
+    opcao = int(input('Digite o id do funcionário a ser removido: '))
+
+    for i in range(len(lista_funcionarios)):
+        if lista_funcionarios[i]['id'] == opcao:
+            lista_funcionarios.pop(i)
 
 def consultar_funcionario():
 
@@ -27,16 +42,23 @@ def consultar_funcionario():
                               '>>' ))
             if opcao == 1:
                 for i in range(len(lista_funcionarios)):
-                    print(f''
-                          f'id: ' + i['id'] + '\n'
-                          f'nome: {i['funcionario']}\n'
-                          f'setor: {i['setor']}\n'
-                          f'salário: {i['salario']}\n')
+                    imprime_funcionario(i)
+
             elif opcao == 2:
-                return False
+                sub_opcao = int(input('Digite o id do funcionário: '))
+                for i in range(len(lista_funcionarios)):
+                    if lista_funcionarios[i]['id'] == sub_opcao:
+                        imprime_funcionario(i)
+                    else:
+                        print(f'Funcionário id {sub_opcao} não encontrado')
+
             elif opcao == 3:
-                return False
+                sub_opcao = input('Digite o setor do(s) funcionário(s): ')
+                for i in range(len(lista_funcionarios)):
+                    if lista_funcionarios[i]['setor'] == sub_opcao:
+                        imprime_funcionario(i)
             elif opcao == 4:
+                print('Retornando...')
                 break
         except ValueError:
             print('Digite uma opção válida')
@@ -57,8 +79,8 @@ while True:
             id_global += 1
         elif opcao == 2:
             consultar_funcionario()
-        # elif opcao == 3:
-        #     remover_funcionario()
+        elif opcao == 3:
+            remover_funcionario()
         elif opcao == 4:
             print('Saindo...')
             break
@@ -66,7 +88,3 @@ while True:
             raise ValueError
     except ValueError:
         print('Opção inválida')
-
-print(lista_funcionarios)
-print(id_global)
-
