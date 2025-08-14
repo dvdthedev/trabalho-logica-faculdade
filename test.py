@@ -1,0 +1,1 @@
+print(len(f'{'-' * 18} MENU CADASTRAR FUNCIONÁRIO {'-' * 18}'))

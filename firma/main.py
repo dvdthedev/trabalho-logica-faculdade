@@ -1,52 +1,66 @@
+lista_funcionarios = list()
+id_global = 5537468
 
-funcionarios = []
+def cadastrar_funcionario(id_global):
+    while True:
+        try:
+            print(f'{'-' * 18} MENU CADASTRAR FUNCIONÁRIO {'-' * 19}')
+            funcionario = input('Por favor entre com o nome do funcionario: ')
+            setor = input('Por favor entre com o setor do funcionario: ')
+            salario = float(input('Por favor entre com o salario do funcionario: '))
+            funcionario = {'id' : id_global, 'funcionario': funcionario, 'setor': setor, 'salario': salario}
+            lista_funcionarios.append(funcionario)
+            break
+        except ValueError:
+            print('Valores inválidos, tente novamente')
 
-def existe_arquivo(arquivo):
-    try:
-        abrir =  open(arquivo, 'rt', encoding='utf-8')
-        abrir.close()
-    except FileNotFoundError:
-        return False
-    else:
-        return True
-
-def criar_arquivo(arquivo):
-    try:
-        abrir =  open(arquivo, 'wt+', encoding='utf-8')
-    except FileNotFoundError:
-        print('Arquivo não pode ser criado')
-    else:
-        print('Arquivo criado com sucesso')
-    finally:
-        abrir.close()
-
-def ler_arquivo(arquivo):
-    try:
-        a = open(arquivo, 'rt', encoding='utf-8')
-
-        for linha in a:
-            linha = linha.rstrip()
-
-        return a.read()
-    except FileNotFoundError:
-        print('Erro ao ler arquivo')
-        return None
-    finally:
-        a.close()
-
-arquivo = 'file.txt'
-
-if not existe_arquivo(arquivo):
-    criar_arquivo(arquivo)
-
+def consultar_funcionario():
+    while True:
+        try:
+            print(f'{'-' * 18} MENU CONSULTAR FUNCIONÁRIO {'-' * 19}')
+            opcao = int(input('Escolha a opção desejada: \n'
+                              '1 - Consultar todos Funcionários \n'
+                              '2 - Consultar Funcionário por id\n'
+                              '3 - Consultar Funcionário por setor\n'
+                              '4 - Retornar \n'
+                              '>>' ))
+            if opcao == 1:
+                return True
+            elif opcao == 2:
+                return False
+            elif opcao == 3:
+                return False
+            elif opcao == 4:
+                break
+        except ValueError:
+            print('Digite uma opção válida')
 print("Bem vindo a Empresa do Deivid Alves da Rocha")
-print('-' * 65)
-print(f'{'-' *24} MENU PRINCIPAL {'-' *25}')
-print('Escolha a opção desejada: \n'
+
+while True:
+    try:
+        print('-' * 65)
+        print(f'{'-' * 24} MENU PRINCIPAL {'-' * 25}')
+        opcao = int(input('Escolha a opção desejada: \n'
       '1 - Cadastrar Funcionários \n'
       '2 - Consultar Funcionários \n'
       '3 - Remover Funcionários \n'
       '4 - Sair\n'
-      '>>')
+      '>>'))
+        if opcao == 1:
+            cadastrar_funcionario(id_global)
+            id_global += 1
+        elif opcao == 2:
+            consultar_funcionario()
+        # elif opcao == 3:
+        #     remover_funcionario()
+        elif opcao == 4:
+            print('Saindo...')
+            break
+        else:
+            raise ValueError
+    except ValueError:
+        print('Opção inválida')
 
-print(ler_arquivo(arquivo))
+print(lista_funcionarios)
+print(id_global)
+
