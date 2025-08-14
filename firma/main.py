@@ -15,6 +15,7 @@ def cadastrar_funcionario(id_global):
             print('Valores inválidos, tente novamente')
 
 def consultar_funcionario():
+
     while True:
         try:
             print(f'{'-' * 18} MENU CONSULTAR FUNCIONÁRIO {'-' * 19}')
@@ -25,7 +26,12 @@ def consultar_funcionario():
                               '4 - Retornar \n'
                               '>>' ))
             if opcao == 1:
-                return True
+                for i in range(len(lista_funcionarios)):
+                    print(f''
+                          f'id: ' + i['id'] + '\n'
+                          f'nome: {i['funcionario']}\n'
+                          f'setor: {i['setor']}\n'
+                          f'salário: {i['salario']}\n')
             elif opcao == 2:
                 return False
             elif opcao == 3:
