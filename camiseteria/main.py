@@ -3,10 +3,12 @@ mls = {'nome': 'Camiseta Manga Longa Simples', 'valor' : 2.1}
 mce = {'nome': 'Camiseta Manga Curta Com Estampa', 'valor' : 2.9}
 mle = {'nome': 'Camiseta Manga Longa Com Estampa', 'valor' : 3.2}
 
-frete = {'transportadora': 100.0 , 'sedex': 200.0, 'retirar': 0}
-
-
 def escolha_modelo():
+    """
+    Pede ao usuário um modelo de camiseta listado
+    Returns: retorna o valor da camiseta escolhida
+
+    """
     while True:
         try:
             opcao = input('Entre com o modelo desejado: \n'
@@ -29,23 +31,26 @@ def escolha_modelo():
         except ValueError:
             print('Escolha inválida, entre com o modelo novamente.')
 
-quantidade_camiseta = 0
 def num_camisetas():
+    """
+    Pede ao usuário pra digitar a quantidade de camisetas (número válido)
+    Returns: retorna a quantidade de camisetas (com desconto)
+
+    """
     while True:
         try:
             opcao = int(input('Entre com o número de camisetas:'))
-            quantidade_camiseta = opcao
+            global quantidade_camiseta
             if opcao > 0 and opcao < 20:
-                return (opcao * modelo_escolhido)
+                quantidade_camiseta = opcao
+                return opcao
             elif opcao >= 20 and opcao < 200:
-                quantidade_camiseta * 0.95
-                return opcao * (modelo_escolhido * 0.95)
+                quantidade_camiseta = opcao * 0.95
+                return opcao *  0.95
             elif opcao >= 200 and opcao < 2000:
-                quantidade_camiseta * 0.93
-                return opcao * (modelo_escolhido * 0.93)
+                return opcao *  0.93
             elif opcao >= 2000 and opcao <= 20000:
-                quantidade_camiseta * 0.88
-                return opcao * (modelo_escolhido * 0.88)
+                return opcao *  0.88
             elif opcao > 20000:
                 print('Não aceitamos tantas camisetas de uma vez.')
             else:
@@ -55,6 +60,11 @@ def num_camisetas():
             print('O valor digitado não é um número válido (Maior que 0 menor que 20.000)')
 
 def frete():
+    """
+    Pergunta ao usuário qual frete deseja
+    Returns: Valor do frete
+
+    """
     while True:
         try:
             opcao = int(input('Escolha o tipo de frete:\n'
@@ -73,12 +83,11 @@ def frete():
         except ValueError:
             print('Valor inválido, escolha uma opção (1/2/3)')
 
-
-
 print('Bem vindo a fábrica de Camisetas do Deivid Alves da Rocha')
 
-modelo_escolhido = escolha_modelo()
-quantidade_camiseta = num_camisetas()
+modelo = escolha_modelo()
+num_camisetas = num_camisetas()
 valor_do_frete = frete()
+total_a_pagar = (modelo * num_camisetas) + valor_do_frete
 
-print(f'Total: {quantidade_camiseta + valor_do_frete:.2f} (Modelo: {modelo_escolhido} * Quantidade(com desconto): {quantidade_camiseta:.0f} + frete: {valor_do_frete:.2f}')
+print(f'Total: {total_a_pagar:.2f} (Modelo: {modelo} * Quantidade(com desconto): {num_camisetas:.0f} + frete: {valor_do_frete:.2f}')
