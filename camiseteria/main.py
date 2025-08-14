@@ -36,12 +36,15 @@ def num_camisetas():
             opcao = int(input('Entre com o número de camisetas:'))
             quantidade_camiseta = opcao
             if opcao > 0 and opcao < 20:
-                return opcao * modelo_escolhido
+                return (opcao * modelo_escolhido)
             elif opcao >= 20 and opcao < 200:
+                quantidade_camiseta * 0.95
                 return opcao * (modelo_escolhido * 0.95)
             elif opcao >= 200 and opcao < 2000:
+                quantidade_camiseta * 0.93
                 return opcao * (modelo_escolhido * 0.93)
             elif opcao >= 2000 and opcao <= 20000:
+                quantidade_camiseta * 0.88
                 return opcao * (modelo_escolhido * 0.88)
             elif opcao > 20000:
                 print('Não aceitamos tantas camisetas de uma vez.')
@@ -78,4 +81,4 @@ modelo_escolhido = escolha_modelo()
 quantidade_camiseta = num_camisetas()
 valor_do_frete = frete()
 
-print(f'Total: {quantidade_camiseta + valor_do_frete:.2f} (Modelo: {modelo_escolhido} * Quantidade de camisetas: {quantidade_camiseta} + frete: {valor_do_frete:.2f}')
+print(f'Total: {quantidade_camiseta + valor_do_frete:.2f} (Modelo: {modelo_escolhido} * Quantidade(com desconto): {quantidade_camiseta:.0f} + frete: {valor_do_frete:.2f}')
