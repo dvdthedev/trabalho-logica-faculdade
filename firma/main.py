@@ -24,10 +24,13 @@ def imprime_funcionario(i):
 def remover_funcionario():
     print(f'{'-' * 19} MENU REMOVER FUNCIONÁRIO {'-' * 20}')
     opcao = int(input('Digite o id do funcionário a ser removido: '))
-
+    acumulador = 0
     for i in range(len(lista_funcionarios)):
         if lista_funcionarios[i]['id'] == opcao:
+            acumulador += 1
             lista_funcionarios.pop(i)
+    if acumulador == 0:
+        print("Id inválido")
 
 def consultar_funcionario():
 
